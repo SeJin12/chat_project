@@ -2,6 +2,7 @@ package com.sejin.project.chat_project;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -40,6 +41,10 @@ public class LoginActivity extends AppCompatActivity {
         loginbtn = findViewById(R.id.login_login_btn);
         joinbtn = findViewById(R.id.login_join_btn);
 
+        // 작업을 위해 임시
+        edit_email.setText("0000");
+        edit_password.setText("0000");
+
         layout.setOnClickListener(new View.OnClickListener() { // 배경화면 클릭 시, 소프트 키보드를 없애준다.
             @Override
             public void onClick(View v) {
@@ -60,6 +65,18 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<UserVO>() {
             @Override
             public void onResponse(Call<UserVO> call, Response<UserVO> response) {
+                SharedPreferences sf = getSharedPreferences("userinfo",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sf.edit();
+
+                UserVO vo = response.body();
+                editor.putString("email",vo.uemail);
+                editor.putString("name",vo.uname);
+                editor.putString("phone",vo.uphone);
+                editor.putString("region",vo.uregion);
+                editor.putBoolean("auto",false); // 만약 true라면 자동로그인
+
+                editor.commit();
+
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);
                 finish();
