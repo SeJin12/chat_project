@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "938306413049",
+    "firebase_url": "https://chat-project-581c0.firebaseio.com",
+    "project_id": "chat-project-581c0",
+    "storage_bucket": "chat-project-581c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938306413049:android:40f712cfef2d3fcb",
+        "android_client_info": {
+          "package_name": "com.sejin.project.chat_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "938306413049-ekfis2gkdrp84m2ec30mssqp8ebt79sa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXw8NFUZHi61mhllQseXf4uiWxigggjvk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

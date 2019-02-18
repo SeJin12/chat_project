@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_char_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="chat"
-        android:gravity="center_horizontal|center_vertical"/>
+        android:layout_above="@id/layout_chat_bottom"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/layout_chat_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <EditText
+            android:id="@+id/chat_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="8" />
+
+        <Button
+            android:id="@+id/chat_addbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="댓글 추가"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

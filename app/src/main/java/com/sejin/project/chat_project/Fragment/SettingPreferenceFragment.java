@@ -1,47 +1,31 @@
 package com.sejin.project.chat_project.Fragment;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceFragmentCompat;
-import android.support.v7.preference.PreferenceManager;
-import android.widget.Toast;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import com.sejin.project.chat_project.LoginActivity;
 import com.sejin.project.chat_project.R;
 
-public class SettingPreferenceFragment extends PreferenceFragmentCompat {
+public class SettingPreferenceFragment extends Fragment {
 
+//FIXME sharedpreference setting fragment   ref : GgangSam book
 
-    SharedPreferences prefs;
-    Preference logout;
 
     @Override
-    public void onCreatePreferences(Bundle bundle, String rootKey) {
-        addPreferencesFromResource(R.xml.settings_preference);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        logout = findPreference("logout");
-        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        logout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                Toast.makeText(getActivity(),"logout",Toast.LENGTH_LONG).show();
-                SharedPreferences sf = getActivity().getSharedPreferences("userinfo", Context.MODE_PRIVATE); // FIXME 조심 되는지 나중에 꼭 확인할것 레이아웃 중첩되는지 안되는지
-                SharedPreferences.Editor editor = sf.edit();
-                editor.putBoolean("auto",false);
-                editor.commit();
+    }
 
-                Intent intent = new Intent(getActivity(),LoginActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-
-                return false;
-            }
-        });
-
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_profile,container,false);
     }
 
 
