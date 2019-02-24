@@ -52,7 +52,7 @@ public class ChatFragment extends Fragment {
         databaseReference = firebaseDatabase.getReference();
 
 
-        mRecyclerView = view.findViewById(R.id.recycler_char_view);
+        mRecyclerView = view.findViewById(R.id.recycler_chat_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);

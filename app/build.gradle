@@ -43,5 +43,17 @@ dependencies {
 
     // firebase
     implementation 'com.google.firebase:firebase-database:9.2.1'
+
+    //Preference
+//    implementation 'com.android.support:preference-v7:26.1.0'
+
+    // floating Action Button
+    implementation 'com.android.support:design:26.1.0'
+
+    // Google Map
+    implementation 'com.google.android.gms:play-services:11.2.0'
+
+
 }
 apply plugin: 'com.google.gms.google-services' // firebase
+

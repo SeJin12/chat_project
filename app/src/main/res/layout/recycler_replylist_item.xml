@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="5dp"
+    android:layout_marginBottom="1dp"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp">
+
+    <LinearLayout
+        android:id="@+id/layout_replylist_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="7dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/replylist_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            />
+
+        <TextView
+            android:id="@+id/replylist_regdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/replylist_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="reply text" />
+
+
+</LinearLayout>
+</android.support.v7.widget.CardView>

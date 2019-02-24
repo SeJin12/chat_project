@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ReplyActivity"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <RelativeLayout
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        >
+
+        <RelativeLayout
+            android:id="@+id/reply_nowriter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <LinearLayout
+                android:id="@+id/reply_no_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="글번호 : "/>
+
+                <TextView
+                    android:id="@+id/reply_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BNO"
+                    android:layout_alignParentLeft="true"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/reply_no_item"
+                android:id="@+id/reply_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TITLE"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="글쓴이 : "/>
+
+                <TextView
+                    android:id="@+id/reply_writer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WIRTER"/>
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:layout_below="@id/reply_nowriter"
+            android:id="@+id/reply_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CONTENT"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/reply_content"
+            android:gravity="bottom"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentLeft="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="작성일 : "/>
+
+                <TextView
+                    android:id="@+id/reply_regdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="REGDATE" />
+
+            </LinearLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="조회수: "
+                    android:layout_toLeftOf="@id/reply_viewcount"/>
+                <TextView
+                    android:id="@+id/reply_viewcount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VIEWCNT"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <fragment
+        android:id="@+id/reply_map"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_weight="3"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_reply_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/reply_bottom">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <RelativeLayout
+            android:id="@+id/reply_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <EditText
+                android:id="@+id/reply_content_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/reply_add_btn" />
+            <Button
+                android:id="@+id/reply_add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="등록"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

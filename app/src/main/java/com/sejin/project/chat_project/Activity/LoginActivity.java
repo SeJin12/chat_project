@@ -1,4 +1,4 @@
-package com.sejin.project.chat_project;
+package com.sejin.project.chat_project.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.sejin.project.chat_project.R;
 import com.sejin.project.chat_project.Retrofit.Client;
 import com.sejin.project.chat_project.Retrofit.UserInterface;
 import com.sejin.project.chat_project.VO.UserVO;
@@ -68,11 +69,11 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences sf = getSharedPreferences("userinfo",MODE_PRIVATE);
                 SharedPreferences.Editor editor = sf.edit();
 
-                UserVO vo = response.body();
-                editor.putString("email",vo.uemail);
-                editor.putString("name",vo.uname);
-                editor.putString("phone",vo.uphone);
-                editor.putString("region",vo.uregion);
+                UserVO user = response.body();
+                editor.putString("email",user.uemail);
+                editor.putString("name",user.uname);
+                editor.putString("phone",user.uphone);
+                editor.putString("region",user.uregion);
                 editor.putBoolean("auto",false); // 만약 true라면 자동로그인
 
                 editor.commit();

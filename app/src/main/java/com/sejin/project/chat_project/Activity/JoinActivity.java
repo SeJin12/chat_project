@@ -1,4 +1,4 @@
-package com.sejin.project.chat_project;
+package com.sejin.project.chat_project.Activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.sejin.project.chat_project.R;
 import com.sejin.project.chat_project.Retrofit.Client;
 import com.sejin.project.chat_project.Retrofit.UserInterface;
 import com.sejin.project.chat_project.VO.UserVO;

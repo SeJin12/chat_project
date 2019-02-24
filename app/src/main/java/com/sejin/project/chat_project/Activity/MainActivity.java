@@ -1,4 +1,4 @@
-package com.sejin.project.chat_project;
+package com.sejin.project.chat_project.Activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
@@ -9,7 +9,8 @@ import android.widget.TabHost;
 import com.sejin.project.chat_project.Fragment.BoardFragment;
 import com.sejin.project.chat_project.Fragment.ChatFragment;
 import com.sejin.project.chat_project.Fragment.ProfileFragment;
-import com.sejin.project.chat_project.Fragment.SettingPreferenceFragment;
+import com.sejin.project.chat_project.Fragment.SettingFragment;
+import com.sejin.project.chat_project.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         TabHost.TabSpec spec4 = host.newTabSpec("tab4");
         spec4.setIndicator(null,ResourcesCompat.getDrawable(getResources(),R.drawable.tab_settings,null));
-        host.addTab(spec4,SettingPreferenceFragment.class,null);
+        host.addTab(spec4,SettingFragment.class,null);
+
 
 
     }
