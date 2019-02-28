@@ -40,7 +40,7 @@ public class CreateBoardActivity extends AppCompatActivity implements OnMapReady
 
     BoardInterface boardInterface;
     GoogleMap map;
-    EditText title,content,search;
+    EditText title, content, search;
     Button ok;
     String name;
     Geocoder geocoder;
@@ -58,8 +58,8 @@ public class CreateBoardActivity extends AppCompatActivity implements OnMapReady
         search = findViewById(R.id.cboard_search);
         ok = findViewById(R.id.cboard_ok);
 
-        SharedPreferences sf = getSharedPreferences("userinfo",MODE_PRIVATE);
-        name = sf.getString("name","");
+        SharedPreferences sf = getSharedPreferences("userinfo", MODE_PRIVATE);
+        name = sf.getString("name", "");
 
         setTitle("글 작성");
         // 뒤로가기 버튼
@@ -76,15 +76,15 @@ public class CreateBoardActivity extends AppCompatActivity implements OnMapReady
         map = googleMap;
         geocoder = new Geocoder(this);
 
-        if(map != null){
-            latLng = new LatLng(37.566643,126.978279);
+        if (map != null) {
+            latLng = new LatLng(37.566643, 126.978279);
             CameraPosition position = new CameraPosition.Builder()
                     .target(latLng).zoom(16f).build();
             map.moveCamera(CameraUpdateFactory.newCameraPosition(position));
 
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.icon(BitmapDescriptorFactory
-            .fromResource(R.drawable.ic_marker));
+                    .fromResource(R.drawable.ic_marker));
             markerOptions.position(latLng);
             markerOptions.title("서울시청");
             markerOptions.snippet("Tel:02-120");
@@ -108,18 +108,21 @@ public class CreateBoardActivity extends AppCompatActivity implements OnMapReady
             @Override
             public void onClick(View v) {
                 String str = search.getText().toString();
+                if(str.equals("")){
+                    str = "서울";
+                }
                 List<Address> addressList = null;
-                try{
-                    addressList = geocoder.getFromLocationName(str,5);
-                }catch (IOException e){
+                try {
+                    addressList = geocoder.getFromLocationName(str, 5);
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
 
-                if(addressList.size() == 0){
-                    Toast.makeText(getApplicationContext(),"검색 결과가 없습니다.",Toast.LENGTH_SHORT).show();
-                }else{
-                    String []splitStr = addressList.get(0).toString().split(",");
-                    address = splitStr[0].substring(splitStr[0].indexOf("\"") + 1,splitStr[0].length() - 2); // 주소
+                if (addressList.size() == 0) {
+                    Toast.makeText(getApplicationContext(), "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    String[] splitStr = addressList.get(0).toString().split(",");
+                    address = splitStr[0].substring(splitStr[0].indexOf("\"") + 1, splitStr[0].length() - 2); // 주소
 
                     String latitude = splitStr[10].substring(splitStr[10].indexOf("=") + 1); // 위도
                     String longitude = splitStr[12].substring(splitStr[12].indexOf("=") + 1); // 경도
@@ -137,7 +140,7 @@ public class CreateBoardActivity extends AppCompatActivity implements OnMapReady
                     map.clear();
                     map.addMarker(mOptions2);
                     // 해당 좌표로 화면 줌
-                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                 }
 
             }
@@ -231,35 +234,35 @@ public class CreateBoardActivity extends AppCompatActivity implements OnMapReady
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.board_create,menu);
+        inflater.inflate(R.menu.board_create, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             // 뒤로 가기
             case android.R.id.home:
                 finish();
                 return true;
             case R.id.board_create_menu:
-                BoardVO vo = new BoardVO(title.getText().toString(),content.getText().toString(),name,String.valueOf(latLng.latitude),String.valueOf(latLng.longitude),address);
+                BoardVO vo = new BoardVO(title.getText().toString(), content.getText().toString(), name, String.valueOf(latLng.latitude), String.valueOf(latLng.longitude), address);
                 Call<Map<String, String>> call = boardInterface.insertBoard(vo);
                 call.enqueue(new Callback<Map<String, String>>() {
                     @Override
                     public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
-                        Map<String,String> map = response.body();
-                        if(map.get("code").equals("200")){
-                            Toast.makeText(getApplicationContext(),"글 작성 완료.",Toast.LENGTH_SHORT).show();
+                        Map<String, String> map = response.body();
+                        if (map.get("code").equals("200")) {
+                            Toast.makeText(getApplicationContext(), "글 작성 완료.", Toast.LENGTH_SHORT).show();
                             finish();
-                        }else{
-                            Toast.makeText(getApplicationContext(),"글 작성 실패.",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "글 작성 실패.", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Map<String, String>> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(),"항목 모두를 입력해주세요.",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "항목 모두를 입력해주세요.", Toast.LENGTH_SHORT).show();
                     }
                 });
                 return true;

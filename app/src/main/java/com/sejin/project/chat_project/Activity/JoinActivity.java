@@ -2,12 +2,14 @@ package com.sejin.project.chat_project.Activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sejin.project.chat_project.R;
@@ -26,13 +28,23 @@ public class JoinActivity extends AppCompatActivity {
     private RelativeLayout layout;
     UserInterface userinterface;
     EditText join_email_edit,join_pw_edit,join_name_edit,join_phone_edit,join_region_edit;
-    Button join_join_btn,join_cancel_btn,join_checkemail_btn;
+    Button join_join_btn,join_cancel_btn;
+    TextView join_checkemail_btn;
     String uemail,upw,uname,uphone,uregion;
+    TextView action_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
+
+        // 액션바 가운데 정렬
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_center);
+        action_title = findViewById(R.id.action_title);
+        action_title.setText("회원 가입");
+
+
         layout = findViewById(R.id.layout_join);
         userinterface = Client.getClient().create(UserInterface.class);
 
@@ -110,6 +122,6 @@ public class JoinActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"사용할 수 있는 이메일입니다.",Toast.LENGTH_SHORT).show();
             }
         });
-
     }
+
 }

@@ -1,61 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_login"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:padding="20dp">
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:src="@drawable/login_logo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Log In"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="이메일"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"/>
+
         <EditText
             android:id="@+id/login_email_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rectangle"
             android:hint="EMAIL"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="비밀번호"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"/>
 
         <EditText
             android:id="@+id/login_password_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rectangle"
             android:hint="PASSWORD"
             android:inputType="textPassword"
-            />
+            android:layout_marginBottom="15dp"/>
         <!-- 나중에 inputType password로 -->
 
-        <LinearLayout
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/login_login_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginBottom="15dp"
+            android:background="@color/colorPrimary"
+            android:onClick="onClickLogin"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="LOG IN" />
 
-            <Button
-                android:id="@+id/login_login_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LOGIN"
-                android:onClick="onClickLogin"/>
-
-            <Button
-                android:id="@+id/login_join_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="JOIN"
-                android:onClick="onClickJoin"/>
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/login_join_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="onClickJoin"
+            android:textColor="@color/colorPrimary"
+            android:text="JOIN" />
 
     </LinearLayout>
 

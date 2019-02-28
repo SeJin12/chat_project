@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Activity.ReplyActivity"
     android:orientation="vertical"
-    android:weightSum="10">
+    android:weightSum="10"
+    android:background="#ffffff">
 
     <RelativeLayout
-        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
@@ -18,7 +18,9 @@
         <RelativeLayout
             android:id="@+id/reply_nowriter"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:visibility="gone">
 
 
 
@@ -26,12 +28,13 @@
                 android:id="@+id/reply_no_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="글번호 : "/>
+                    android:text="글번호 : " />
 
                 <TextView
                     android:id="@+id/reply_no"
@@ -43,23 +46,47 @@
             </LinearLayout>
 
             <TextView
-                android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/reply_no_item"
                 android:id="@+id/reply_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TITLE"/>
+                android:layout_height="30dp"
+                android:text="TITLE"
+                android:background="@drawable/rectangle"
+                android:padding="2dp"/>
+
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/reply_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="CONTENT"
+            android:layout_below="@id/reply_nowriter"
+            android:layout_above="@id/regview"
+            android:padding="8dp"
+            android:textSize="14dp"/>
+
+        <RelativeLayout
+            android:id="@+id/regview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/rectangle"
+            >
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_alignParentRight="true">
+                android:layout_alignParentLeft="true"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="글쓴이 : "/>
+                    android:text="작성자 : "/>
 
                 <TextView
                     android:id="@+id/reply_writer"
@@ -69,32 +96,12 @@
 
             </LinearLayout>
 
-
-
-        </RelativeLayout>
-
-
-
-        <TextView
-            android:layout_below="@id/reply_nowriter"
-            android:id="@+id/reply_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CONTENT"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@id/reply_content"
-            android:gravity="bottom"
-            >
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_alignParentLeft="true">
+                android:layout_alignParentRight="true"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -110,11 +117,11 @@
             </LinearLayout>
 
 
-
             <RelativeLayout
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true">
+                android:layout_alignParentRight="true"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -133,6 +140,7 @@
 
         </RelativeLayout>
 
+
     </RelativeLayout>
 
     <fragment
@@ -140,7 +148,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_weight="3"/>
+        android:layout_weight="3" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -150,10 +158,10 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_reply_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/reply_bottom">
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_above="@id/reply_bottom" />
 
-        </android.support.v7.widget.RecyclerView>
 
         <RelativeLayout
             android:id="@+id/reply_bottom"
@@ -164,14 +172,16 @@
             <EditText
                 android:id="@+id/reply_content_edit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/reply_add_btn" />
+                android:layout_height="45dp"
+                android:layout_toLeftOf="@id/reply_add_btn"
+                android:background="@drawable/rectangle"/>
             <Button
                 android:id="@+id/reply_add_btn"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_alignParentRight="true"
-                android:text="등록"/>
+                android:text="등록"
+                android:background="@drawable/rectangle"/>
 
         </RelativeLayout>
 

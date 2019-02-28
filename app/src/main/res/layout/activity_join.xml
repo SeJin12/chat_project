@@ -2,102 +2,177 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_join"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.JoinActivity">
+    tools:context=".Activity.JoinActivity"
+    >
 
-    <TextView
-        android:id="@+id/join_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="회원가입"
-        android:textSize="25dp"
-        android:gravity="center_horizontal"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_alignBaseline="@id/join_title"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:layout_marginTop="30dp"
+        >
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp">
 
-            <EditText
-                android:id="@+id/join_email_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="18"
-                android:hint="Email"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/join_checkemail_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onClickJoinEmailCheck"
-                android:text="CHECK"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이메일"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/join_checkemail_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClickJoinEmailCheck"
+                    android:text="중복 체크"
+                    android:textStyle="bold"
+                    android:layout_alignParentRight="true"
+                    />
+
+            </RelativeLayout>
+
+
+
+                <EditText
+                    android:id="@+id/join_email_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle"/>
+
 
 
         </LinearLayout>
 
-
-
-        <EditText
-            android:id="@+id/join_pw_edit"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Password"/>
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="비밀번호"
+                android:layout_marginBottom="5dp"/>
+            <EditText
+                android:id="@+id/join_pw_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:background="@drawable/rectangle" />
 
-        <EditText
-            android:id="@+id/join_name_edit"
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name"/>
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp">
 
-        <EditText
-            android:id="@+id/join_phone_edit"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="이름"
+                android:layout_marginBottom="5dp"/>
+            <EditText
+                android:id="@+id/join_name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Phone number"/>
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp">
 
-        <EditText
-            android:id="@+id/join_region_edit"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="연락처"
+                android:layout_marginBottom="5dp"/>
+
+            <EditText
+                android:id="@+id/join_phone_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:background="@drawable/rectangle"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Region"/>
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="지역"
+                android:layout_marginBottom="5dp"/>
+
+            <EditText
+                android:id="@+id/join_region_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle"
+                />
+
+        </LinearLayout>
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_alignParentBottom="true"
         >
 
         <Button
             android:id="@+id/join_join_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="JOIN"
-            android:onClick="onClickJoinComplete"/>
+            android:onClick="onClickJoinComplete"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginBottom="5dp"/>
 
         <Button
             android:id="@+id/join_cancel_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="CANCEL"
-            android:onClick="onClickJoinCancel"/>
+            android:onClick="onClickJoinCancel"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimary"/>
 
 
     </LinearLayout>

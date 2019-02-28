@@ -106,7 +106,6 @@ public class ReplyActivity extends AppCompatActivity implements OnMapReadyCallba
         reply_viewcount.setText(viewcnt+"");
         reply_writer.setText(writer);
 
-        viewReply();
 
         ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.reply_map)).getMapAsync(this);
 
@@ -150,6 +149,12 @@ public class ReplyActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        viewReply();
     }
 
     void viewReply(){

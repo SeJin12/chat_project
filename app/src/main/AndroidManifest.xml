@@ -33,7 +33,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.MainActivity" />
-        <activity android:name=".Activity.JoinActivity" />
+        <activity android:name=".Activity.JoinActivity"
+            android:theme="@style/otherActivityTheme"/>
         <activity
             android:name=".Activity.ReplyActivity"
             android:theme="@style/otherActivityTheme" />
