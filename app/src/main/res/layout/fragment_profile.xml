@@ -19,4 +19,11 @@
         android:layout_height="wrap_content"
         android:text="textext" />
 
+    <Button
+        android:id="@+id/testbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="서버로 전송"
+        />
+
 </LinearLayout>

@@ -181,6 +181,8 @@
                 android:layout_height="45dp"
                 android:layout_alignParentRight="true"
                 android:text="등록"
+                android:textColor="@color/colorPrimary"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:background="@drawable/rectangle"/>
 
         </RelativeLayout>
