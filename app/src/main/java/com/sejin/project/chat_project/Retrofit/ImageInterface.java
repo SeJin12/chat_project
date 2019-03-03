@@ -11,6 +11,6 @@ public interface ImageInterface {
 
     @Multipart
     @POST("image/upload")
-    Call<String> uploadImage(@Part MultipartBody.Part uploadFile, @Part("email") RequestBody email);
+    Call<Integer> uploadImage(@Part MultipartBody.Part uploadFile, @Part("email") RequestBody email);
 
 }

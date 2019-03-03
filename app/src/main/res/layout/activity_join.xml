@@ -158,18 +158,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="JOIN"
+            android:text="가입 하기"
             android:onClick="onClickJoinComplete"
             android:background="@color/colorPrimary"
             android:textColor="@color/colorPrimaryDark"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="15dp"/>
 
         <Button
             android:id="@+id/join_cancel_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="CANCEL"
+            android:text="취 소"
             android:onClick="onClickJoinCancel"
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/colorPrimary"/>

@@ -56,8 +56,8 @@ public class ProfileFragment extends Fragment {
     String imagePath;
     ImageInterface imageInterface;
     ImageView profile_image;
-    TextView test;
-    Button testbtn;
+    TextView profile_email, profile_name , profile_phone,profile_region;
+    Button profile_btn;
 
     String email,name,phone,region;
 
@@ -72,9 +72,13 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         imageInterface = Client.getClient().create(ImageInterface.class);
-        test = view.findViewById(R.id.test);
+
         profile_image = view.findViewById(R.id.profile_image);
-        testbtn = view.findViewById(R.id.testbtn);
+        profile_btn = view.findViewById(R.id.profile_btn);
+        profile_email = view.findViewById(R.id.profile_email);
+        profile_name = view.findViewById(R.id.profile_name);
+        profile_phone = view.findViewById(R.id.profile_phone);
+        profile_region = view.findViewById(R.id.profile_region);
 
         SharedPreferences sf = this.getActivity().getSharedPreferences("userinfo", Context.MODE_PRIVATE);
 
@@ -83,9 +87,12 @@ public class ProfileFragment extends Fragment {
         phone = sf.getString("phone", "");
         region = sf.getString("region", "");
 
-        test.setText(email + " " + name + " " + phone + " " + region);
+        profile_email.setText(email);
+        profile_name.setText(name);
+        profile_phone.setText(phone);
+        profile_region.setText(region);
 
-//        PermissionCheckAndRequest();
+
         final CharSequence[] Camera = { "앨범에서 사진 선택"};
         profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,11 +117,13 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        testbtn.setOnClickListener(new View.OnClickListener() {
+        profile_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(imagePath != null){
                     uploadImage(imagePath);
+                }else{
+                    Toast.makeText(getContext(),"변경할 이미지를 선택해주세요.",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -162,24 +171,6 @@ public class ProfileFragment extends Fragment {
                         }
                     }
                     break;
-//                case CAMERA_CODE:
-//                    if (resultCode == Activity.RESULT_OK) {
-//                        try {
-//                            cropImage_camera();
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                    } else {
-//                        //카메라 취소버튼 누렀을시
-//                    }
-//                    break;
-//                case REQUEST_ALBUM_IMAGE_CROP:
-//                    if (resultCode == Activity.RESULT_OK) {
-//                        SendPicture(data.getData());
-//                    } else {
-//                        //크롭 취소버튼 누를시
-//                    }
-//                    break;
             }
         }
     }
@@ -215,26 +206,6 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-//    // 사진의 회전값을 가져오기
-//    private int exifOrientationToDegrees(int exifOrientation) {
-//        if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_90) {
-//            return 90;
-//        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_180) {
-//            return 180;
-//        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {
-//            return 270;
-//        }
-//        return 0;
-//    }
-//
-//    // 사진을 정방향대로 회전하기
-//    private Bitmap rotate(Bitmap src, float degree) {
-//        Matrix matrix = new Matrix();
-//        matrix.postRotate(degree);
-//
-//        return Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true); // 이미지와 Matrix 를 셋팅해서 Bitmap 객체 생성
-//    }
-
     //사진의 절대 경로 구하기 , 이미지 서버로 전송할떄도 쓰임
     private String getRealPathFromURI(Uri contentURI) {
         int column_index = 0;
@@ -248,53 +219,35 @@ public class ProfileFragment extends Fragment {
         return cursor.getString(column_index);
     }
 
-//    public void cropImage_camera() {
-//        Intent cropIntent = new Intent("com.android.camera.action.CROP");
-//        cropIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-//        cropIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//        cropIntent.setDataAndType(photoURI, "image/*");
-//        cropIntent.putExtra("aspectX", 1);
-//        cropIntent.putExtra("aspectY", 1);
-//        cropIntent.putExtra("scale", true);
-//        cropIntent.putExtra("output", albumURI);
-//        startActivityForResult(cropIntent, REQUEST_CAMERA_IMAGE_CROP);
-//    }
-//
-//    public void cropImage_album() {
-//        Intent cropIntent = new Intent("com.android.camera.action.CROP");
-//        cropIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-//        cropIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//        cropIntent.setDataAndType(photoURI, "image/*");
-//        cropIntent.putExtra("aspectX", 1);
-//        cropIntent.putExtra("aspectY", 1);
-//        cropIntent.putExtra("scale", true);
-//        cropIntent.putExtra("output", photoURI);
-//        startActivityForResult(cropIntent, REQUEST_ALBUM_IMAGE_CROP);
-//    }
-
 
     // 서버로 파일 업로드
     private void uploadImage(String absolutePath) {
         File file = new File(absolutePath);
-
-        Toast.makeText(getContext(), absolutePath+" "+email, Toast.LENGTH_SHORT).show();
 
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part uploadFile = MultipartBody.Part.createFormData("uploadFile", file.getName(), requestFile);
         RequestBody uemail = RequestBody.create(MediaType.parse("text/plain"),email);
 
 
-        Call<String> call = imageInterface.uploadImage(uploadFile,uemail);
+        Call<Integer> call = imageInterface.uploadImage(uploadFile,uemail);
 
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<Integer>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String s = response.body();
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                int responseCode = response.body();
+                switch (responseCode){
+                    case 200:
+                        Toast.makeText(getContext(), "이미지 업로드 성공", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 400:
+                        Toast.makeText(getContext(), "이미지 업로드 실패", Toast.LENGTH_SHORT).show();
+                        break;
+                }
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(getContext(), "서버로 이미지 전송 실패", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Integer> call, Throwable t) {
+                Toast.makeText(getContext(), "서버와 연결 실패", Toast.LENGTH_SHORT).show();
             }
         });
 

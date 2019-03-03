@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.sejin.project.chat_project.Activity.LoginActivity;
 import com.sejin.project.chat_project.R;
@@ -23,7 +24,7 @@ public class SettingFragment extends ListFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String[] datas = {"공지사항","로그아웃","Github"};
+        String[] datas = {"공지사항","Github","로그아웃"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1,datas);
         setListAdapter(adapter);
@@ -44,8 +45,10 @@ public class SettingFragment extends ListFragment {
             String uri = "https://github.com/SeJin12/";
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
             startActivity(intent);
+        }else if(item.equals("공지사항")){
+            Toast.makeText(getContext(),"Hello World!",Toast.LENGTH_SHORT).show();
         }
-//        Toast.makeText(getContext(),text+" "+position+" "+id,Toast.LENGTH_SHORT).show();
+
     }
 
 

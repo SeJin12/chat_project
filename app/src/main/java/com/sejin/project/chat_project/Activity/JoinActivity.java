@@ -88,6 +88,7 @@ public class JoinActivity extends AppCompatActivity {
                 Map<String,String> map = response.body();
                 if(map.get("code").equals("200")){
                     Toast.makeText(getApplicationContext(),"회원가입에 성공하셨습니다.",Toast.LENGTH_SHORT).show();
+                    overridePendingTransition(0,0);
                     finish();
                 }else{
                     Toast.makeText(getApplicationContext(),"회원가입 실패하셨습니다.",Toast.LENGTH_SHORT).show();
@@ -102,6 +103,7 @@ public class JoinActivity extends AppCompatActivity {
     }
 
     public void onClickJoinCancel(View view) {
+        overridePendingTransition(0,0);
         finish();
     }
 
