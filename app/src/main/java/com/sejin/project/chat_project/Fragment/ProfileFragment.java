@@ -38,6 +38,7 @@ import java.util.Date;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -91,6 +92,24 @@ public class ProfileFragment extends Fragment {
         profile_name.setText(name);
         profile_phone.setText(phone);
         profile_region.setText(region);
+
+        Call<ResponseBody> displayCall = imageInterface.displayImage(email);
+        displayCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    if(response.body() != null){
+                        Bitmap bmp = BitmapFactory.decodeStream(response.body().byteStream());
+                        profile_image.setImageBitmap(bmp);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getContext(),"이미지 가져오기 실패",Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         final CharSequence[] Camera = { "앨범에서 사진 선택"};
